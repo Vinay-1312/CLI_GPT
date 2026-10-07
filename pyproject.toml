@@ -1,0 +1,20 @@
+[project]
+name = "cli-copilot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "vinay-1312", email = "vinaysld123@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "keyring>=25.7.0",
+    "typer>=0.27.2",
+]
+
+[project.scripts]
+cli-copilot = "cli_copilot.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"

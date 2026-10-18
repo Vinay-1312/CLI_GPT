@@ -1,8 +1,13 @@
 [project]
 name = "cli-copilot"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.1"
+description = "Terminal chat copilot powered by Groq, with streaming replies and per-directory resumable sessions."
 readme = "README.md"
+keywords = ["cli", "groq", "llm", "chat", "copilot"]
+classifiers = [
+    "Environment :: Console",
+    "Programming Language :: Python :: 3.12",
+]
 authors = [
     { name = "vinay-1312", email = "vinaysld123@gmail.com" }
 ]
@@ -12,8 +17,15 @@ dependencies = [
     "groq>=1.7.0",
     "httpx>=0.28.1",
     "keyring>=25.7.0",
+    "rich>=13.0.0",
     "typer>=0.27.2",
 ]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [project.scripts]
 cli-copilot = "cli_copilot.cli:app"

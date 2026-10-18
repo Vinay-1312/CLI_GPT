@@ -1,6 +1,5 @@
 import keyring
 import typer
-from click.core import ParameterSource
 
 from .chat import console, run_chat
 from .config import DEFAULT_MODEL, DEFAULT_SYSTEM, SERVICE, USER
@@ -60,5 +59,7 @@ def chat(
         console.print("[red]No API key stored.[/] Run [cyan]`cli_copilot login`[/] first.")
         raise typer.Exit(1)
 
-    system_passed = ctx.get_parameter_source("system") == ParameterSource.COMMANDLINE
+    # Compare by name: typer bundles its own click, so its enum isn't click.core's.
+    source = ctx.get_parameter_source("system")
+    system_passed = source is not None and source.name == "COMMANDLINE"
     run_chat(api_key, model, system, system_passed, new)
